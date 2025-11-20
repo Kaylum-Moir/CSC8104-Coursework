@@ -22,7 +22,7 @@ public class Customer {
 
     @NotBlank
     @Email
-    private String Email;
+    private String email;
 
     public Long getId() {
         return id;
@@ -37,10 +37,10 @@ public class Customer {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 }
