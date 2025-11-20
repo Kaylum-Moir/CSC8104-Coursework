@@ -14,7 +14,6 @@ public class Taxi {
     @Pattern(regexp = "^[A-Za-z0-9]{7}$") // Alphanum and 7 characters long
     private String reg;
 
-    @NotBlank
     @Min(2)
     @Max(20)
     private int seats;

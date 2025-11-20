@@ -20,12 +20,9 @@ public class TaxiService {
     @Transactional
     public void createTaxi(Taxi taxi) {
         // Ensure the reg does not already exist for another user.
-        long count = em.createQuery("SELECT COUNT(c) FROM Taxi c where c.reg = :reg", Long.class)
+        em.createQuery("SELECT COUNT(c) FROM Taxi c where c.reg = :reg", Long.class)
                 .setParameter("reg", taxi.getReg())
                 .getSingleResult();
-        if (count > 0){
-            throw new WebApplicationException("A taxi with that Registration Number already exists.", Response.Status.CONFLICT);
-        }
 
         em.persist(taxi);
     }
