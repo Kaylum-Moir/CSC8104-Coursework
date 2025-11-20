@@ -12,17 +12,17 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @ManyToOne(optional = false)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer")
     private Customer customer;
 
-    @NotBlank
+    @NotNull
     @ManyToOne(optional = false)
-    @JoinColumn(name = "taxi_id")
+    @JoinColumn(name = "taxi")
     private Taxi taxi;
 
-    @NotBlank
+    @NotNull
     @FutureOrPresent // Cannot make a booking for the past
     @Column(name = "date")
     private LocalDate date;

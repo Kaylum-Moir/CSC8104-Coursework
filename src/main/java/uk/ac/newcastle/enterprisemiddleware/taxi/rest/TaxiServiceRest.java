@@ -8,6 +8,7 @@ import uk.ac.newcastle.enterprisemiddleware.taxi.service.TaxiService;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -31,7 +32,7 @@ public class TaxiServiceRest {
 
     @POST
     @Transactional
-    public Response createCustomer(Taxi taxi){
+    public Response createTaxi(@Valid Taxi taxi){
         taxiService.createTaxi(taxi);
 
         URI location = URI.create("/taxis/" + taxi.getId());
