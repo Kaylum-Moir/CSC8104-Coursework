@@ -6,6 +6,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 // https://quarkus.io/guides/hibernate-orm
@@ -16,6 +18,14 @@ public class CustomerService {
 
     @Transactional
     public void createCustomer(Customer customer) {
+        // Ensure the email address does not already exist for another user.
+        long count = em.createQuery("SELECT COUNT(c) FROM Customer c where c.email = :email", Long.class)
+                                .setParameter("email", customer.getEmail())
+                                .getSingleResult();
+        if (count > 0){
+            throw new WebApplicationException("A customer with that email already exists.", Response.Status.CONFLICT);
+        }
+
         em.persist(customer);
     }
 
