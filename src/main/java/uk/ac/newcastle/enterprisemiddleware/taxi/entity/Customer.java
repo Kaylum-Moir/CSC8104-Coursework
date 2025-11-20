@@ -1,4 +1,4 @@
-package uk.ac.newcastle.enterprisemiddleware.taxi;
+package uk.ac.newcastle.enterprisemiddleware.taxi.entity;
 
 
 import javax.persistence.Entity;
