@@ -1,12 +1,7 @@
 package uk.ac.newcastle.enterprisemiddleware.taxi.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 public class Taxi {
@@ -15,30 +10,32 @@ public class Taxi {
     private Long id;
 
     @NotBlank
-    @Size(min = 2, max = 100)
-    private String name;
+    @Column(unique = true)
+    @Pattern(regexp = "^[A-Za-z0-9]{7}$") // Alphanum and 7 characters long
+    private String reg;
 
     @NotBlank
-    @Email
-    private String email;
+    @Min(2)
+    @Max(20)
+    private int seats;
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getReg() {
+        return reg;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setReg(String reg) {
+        this.reg = reg;
     }
 
-    public String getEmail() {
-        return email;
+    public int getSeats() {
+        return seats;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 }
