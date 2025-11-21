@@ -17,7 +17,7 @@ public class BookingService {
     EntityManager em;
 
     @Transactional
-    public void createBooking(Booking booking) {
+    public Booking createBooking(Booking booking) {
         // Ensure the email address does not already exist for another user.
         long count = em.createQuery("SELECT COUNT(c) FROM Booking c WHERE c.taxi = :taxi AND c.date = :date", Long.class)
                                 .setParameter("taxi", booking.getTaxi())
@@ -28,6 +28,7 @@ public class BookingService {
         }
 
         em.persist(booking);
+        return booking;
     }
 
     // Returns a list of existing bookings in name order
