@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -37,5 +38,12 @@ public class CustomerServiceRest {
 
         URI location = URI.create("/customers/" + customer.getId());
         return Response.created(location).entity(customer).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deleteCustomer(Long id) {
+        customerService.deleteCustomer(id);
+        return Response.noContent().build();
     }
 }

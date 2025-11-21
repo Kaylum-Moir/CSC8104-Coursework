@@ -34,4 +34,16 @@ public class CustomerService {
     public Customer findByID(Long id) {
         return em.find(Customer.class, id);
     }
+
+    @Transactional
+    public void deleteCustomer(Long id) {
+        Customer customer = em.find(Customer.class, id);
+        if (customer == null) {
+            throw new WebApplicationException(
+                    "Customer not found",
+                    Response.Status.NOT_FOUND
+            );
+        }
+        em.remove(customer);
+    }
 }

@@ -1,7 +1,11 @@
 package uk.ac.newcastle.enterprisemiddleware.taxi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Taxi {
@@ -17,6 +21,26 @@ public class Taxi {
     @Min(2)
     @Max(20)
     private int seats;
+
+
+    //https://www.baeldung.com/jpa-cascade-types
+    @OneToMany(
+            mappedBy = "taxi",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<Booking> bookings = new ArrayList<>();
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+
 
     public Long getId() {
         return id;

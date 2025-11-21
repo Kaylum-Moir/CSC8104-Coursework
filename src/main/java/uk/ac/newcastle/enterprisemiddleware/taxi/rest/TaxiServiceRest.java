@@ -9,6 +9,7 @@ import uk.ac.newcastle.enterprisemiddleware.taxi.service.TaxiService;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -37,5 +38,12 @@ public class TaxiServiceRest {
 
         URI location = URI.create("/taxis/" + taxi.getId());
         return Response.created(location).entity(taxi).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deleteTaxi(Long id) {
+        taxiService.deleteTaxi(id);
+        return Response.noContent().build();
     }
 }

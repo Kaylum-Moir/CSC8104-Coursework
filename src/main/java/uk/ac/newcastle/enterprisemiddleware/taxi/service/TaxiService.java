@@ -35,4 +35,17 @@ public class TaxiService {
     public Taxi findByID(Long id) {
         return em.find(Taxi.class, id);
     }
+
+
+    @Transactional
+    public void deleteTaxi(Long id) {
+        Taxi taxi = em.find(Taxi.class, id);
+        if (taxi == null) {
+            throw new WebApplicationException(
+                    "Taxi not found",
+                    Response.Status.NOT_FOUND
+            );
+        }
+        em.remove(taxi);
+    }
 }

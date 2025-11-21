@@ -1,11 +1,15 @@
 package uk.ac.newcastle.enterprisemiddleware.taxi.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 // Customer Entity
 @Entity
@@ -27,6 +31,24 @@ public class Customer {
     @NotBlank
     @Pattern(regexp = "^0\\d{10}$", message = "Phone number must be 11 digits and begin with a 0.")
     private String phone;
+
+
+    //https://www.baeldung.com/jpa-cascade-types
+    @OneToMany(
+        mappedBy = "customer",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<Booking> bookings = new ArrayList<>();
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
     public Long getId() {
         return id;
