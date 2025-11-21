@@ -21,7 +21,7 @@ public class BookingServiceRest {
     BookingService bookingService;
 
     @GET
-    public Response listBookings(@QueryParam("customerId") Long customerId){
+    public Response listBookings(@QueryParam("customer") Long customerId){
         List<Booking> bookings;
         if (customerId != null) {
             bookings = bookingService.findByCustomer(customerId);

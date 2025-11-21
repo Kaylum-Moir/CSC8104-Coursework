@@ -64,8 +64,9 @@ public class BookingRestTest {
 
         // List bookings under custId
         given()
+                .queryParam("customer", custId)
         .when()
-                .get("/bookings?customerId=" + custId)
+                .get("/bookings")
         .then()
                 .statusCode(200)
                 .body("size()", greaterThanOrEqualTo(1)) // Ensure there is at least one
