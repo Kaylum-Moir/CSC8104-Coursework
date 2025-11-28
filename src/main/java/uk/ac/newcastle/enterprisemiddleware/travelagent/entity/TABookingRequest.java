@@ -4,6 +4,7 @@ import io.smallrye.common.constraint.NotNull;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TABookingRequest {
 
@@ -25,6 +26,9 @@ public class TABookingRequest {
 
     @NotNull
     private LocalDate date;
+
+    @NotNull
+    private Integer seats;
 
     public Long getCustomerId() {
         return customerId;
@@ -64,5 +68,13 @@ public class TABookingRequest {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Integer getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Integer seats) {
+        this.seats = seats;
     }
 }

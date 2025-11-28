@@ -4,4 +4,4 @@
 -- insert into myentity (id, field) values(nextval('hibernate_sequence'), 'field-2');
 -- insert into myentity (id, field) values(nextval('hibernate_sequence'), 'field-3');
 
-INSERT INTO Customer (name, email, phone) VALUES ("TAgent", "agent@Travel.com", "07123456789");
+INSERT INTO Customer (name, email, phone) VALUES ('TAgent', 'agent@Travel.com', '07123456789');

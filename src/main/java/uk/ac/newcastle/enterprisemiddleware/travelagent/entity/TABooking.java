@@ -18,7 +18,9 @@ import uk.ac.newcastle.enterprisemiddleware.taxi.entity.Customer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import javax.persistence.Entity;
 
+@Entity
 public class TABooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +46,11 @@ public class TABooking {
 
     @Column(name = "travel_date", nullable = false)
     @NotNull
-    private LocalDate travelDate;
+    private LocalDate date;
+
+    @Column(name = "flight_seats",  nullable = false)
+    @NotNull
+    private Integer seats;
 
 
     public Long getId() {
@@ -83,11 +89,19 @@ public class TABooking {
         this.flightBookingId = flightBookingId;
     }
 
-    public LocalDate getTravelDate() {
-        return travelDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setTravelDate(LocalDate travelDate) {
-        this.travelDate = travelDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Integer getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Integer seats) {
+        this.seats = seats;
     }
 }
