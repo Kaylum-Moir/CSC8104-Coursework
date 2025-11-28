@@ -1,5 +1,7 @@
 package uk.ac.newcastle.enterprisemiddleware.taxi.entity;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;

@@ -1,5 +1,7 @@
 package uk.ac.newcastle.enterprisemiddleware.taxi.entity;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 @Schema(name = "GuestBooking", description = "Object that stores a new Customer and their Booking.")
 public class GuestBooking {
     private Customer customer;
