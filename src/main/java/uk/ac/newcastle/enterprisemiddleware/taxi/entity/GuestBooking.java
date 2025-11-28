@@ -1,5 +1,6 @@
 package uk.ac.newcastle.enterprisemiddleware.taxi.entity;
 
+@Schema(name = "GuestBooking", description = "Object that stores a new Customer and their Booking.")
 public class GuestBooking {
     private Customer customer;
     private Booking booking;

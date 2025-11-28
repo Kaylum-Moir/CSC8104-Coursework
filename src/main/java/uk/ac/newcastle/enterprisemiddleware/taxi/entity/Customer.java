@@ -13,6 +13,7 @@ import java.util.List;
 
 // Customer Entity
 @Entity
+@Schema(name = "Customer", description = "A Registered Customer that stores ID, Name, Email and Phone.")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Schema(name = "Taxi", description = "A Taxi Object storing ID, Registration and Seats.")
 public class Taxi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 // Adding a constraint to only allow one booking per taxi per date
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"taxi", "date"}))
+@Schema(name = "Booking", description = "A Booking that stores Customer, Taxi and Date.")
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

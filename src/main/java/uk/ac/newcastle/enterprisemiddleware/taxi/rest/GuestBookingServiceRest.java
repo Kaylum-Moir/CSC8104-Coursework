@@ -1,6 +1,7 @@
 package uk.ac.newcastle.enterprisemiddleware.taxi.rest;
 
 import uk.ac.newcastle.enterprisemiddleware.taxi.entity.Booking;
+import uk.ac.newcastle.enterprisemiddleware.taxi.entity.Customer;
 import uk.ac.newcastle.enterprisemiddleware.taxi.entity.GuestBooking;
 import uk.ac.newcastle.enterprisemiddleware.taxi.service.GuestBookingService;
 
@@ -12,6 +13,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 
 @Path("/guestbookings")
+@Tag(name = "GuestBookings", description = "Create a Guest Booking.")
 public class GuestBookingServiceRest {
     @Inject
     UserTransaction userTransaction;
@@ -20,6 +22,24 @@ public class GuestBookingServiceRest {
     GuestBookingService guestBookingService;
 
     @POST
+    @Operation(
+            summary = "Create Guest Booking",
+            description = "Creates a Guest Booking with a new Customer."
+    )
+    @APIResponses({
+            @APIResponse(
+                    responseCode = "201",
+                    description = "Guest Booking Created.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = Booking.class)
+                    )
+            ),
+            @APIResponse(
+                    responseCode = "500",
+                    description = "An error occurred while creating a Guest Booking."
+            )
+    })
     public Response createGuestBooking(GuestBooking guestBooking) {
         Booking booking;
         try {
